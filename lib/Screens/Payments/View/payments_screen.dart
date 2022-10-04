@@ -17,52 +17,52 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
       // appBar: AppBar(
       //   backgroundColor: Color(0xFFBAD350),
       // ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: EdgeInsets.only(
-              top: mediaQuery.size.height * 0.014,
-              bottom: mediaQuery.size.height * 0.009,
-              left: mediaQuery.size.width * 0.015,
-              right: mediaQuery.size.width * 0.015),
-          color: const Color(0xFFBAD350),
-          height: mediaQuery.size.height * 0.085,
-          child: SizedBox(
-            // height: mediaQuery.size.height * 0.068,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // Icon(Icons.home),
-                BottomAppBarIconNotSelected(
-                  mediaQuery: mediaQuery,
-                  title: 'Home',
-                  iconData: Icons.ac_unit,
-                ),
-                BottomAppBarIconNotSelected(
-                  mediaQuery: mediaQuery,
-                  title: 'Materials',
-                  iconData: Icons.account_balance_outlined,
-                ),
-                BottomAppBarIconSelected(
-                  mediaQuery: mediaQuery,
-                  title: 'Payments',
-                  iconData: Icons.border_all_sharp,
-                ),
+      // bottomNavigationBar: BottomAppBar(
+      //   child: Container(
+      //     padding: EdgeInsets.only(
+      //         top: mediaQuery.size.height * 0.014,
+      //         bottom: mediaQuery.size.height * 0.009,
+      //         left: mediaQuery.size.width * 0.015,
+      //         right: mediaQuery.size.width * 0.015),
+      //     color: const Color(0xFFBAD350),
+      //     height: mediaQuery.size.height * 0.085,
+      //     child: SizedBox(
+      //       // height: mediaQuery.size.height * 0.068,
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //         children: [
+      //           // Icon(Icons.home),
+      //           BottomAppBarIconNotSelected(
+      //             mediaQuery: mediaQuery,
+      //             title: 'Home',
+      //             iconData: Icons.ac_unit,
+      //           ),
+      //           BottomAppBarIconNotSelected(
+      //             mediaQuery: mediaQuery,
+      //             title: 'Materials',
+      //             iconData: Icons.account_balance_outlined,
+      //           ),
+      //           BottomAppBarIconSelected(
+      //             mediaQuery: mediaQuery,
+      //             title: 'Payments',
+      //             iconData: Icons.border_all_sharp,
+      //           ),
 
-                BottomAppBarIconNotSelected(
-                  mediaQuery: mediaQuery,
-                  title: 'Orders',
-                  iconData: Icons.amp_stories_outlined,
-                ),
-                BottomAppBarIconNotSelected(
-                  mediaQuery: mediaQuery,
-                  title: 'Enquires',
-                  iconData: Icons.info_outline,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+      //           BottomAppBarIconNotSelected(
+      //             mediaQuery: mediaQuery,
+      //             title: 'Orders',
+      //             iconData: Icons.amp_stories_outlined,
+      //           ),
+      //           BottomAppBarIconNotSelected(
+      //             mediaQuery: mediaQuery,
+      //             title: 'Enquiries',
+      //             iconData: Icons.info_outline,
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // ),
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -600,225 +600,6 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                   ),
                 ),
               ),
-              // Container(
-              //   margin: EdgeInsets.only(
-              //     top: mediaQuery.size.height * 0.006,
-              //     bottom: mediaQuery.size.height * 0.008,
-              //   ),
-              //   padding: EdgeInsets.only(
-              //       left: mediaQuery.size.width * 0.05,
-              //       right: mediaQuery.size.width * 0.05,
-              //       bottom: mediaQuery.size.height * 0.015),
-              //   height: mediaQuery.size.height * 0.115,
-              //   width: mediaQuery.size.width,
-              //   color: Colors.white,
-              //   child: Container(
-              //     padding: EdgeInsets.only(
-              //       top: mediaQuery.size.height * 0.014,
-              //     ),
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //       children: [
-              //         Row(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Container(
-              //               padding:
-              //                   EdgeInsets.all(mediaQuery.size.width * 0.001),
-              //               alignment: Alignment.center,
-              //               height: mediaQuery.size.height * 0.032,
-              //               width: mediaQuery.size.width * 0.21,
-              //               color: Colors.grey.shade200,
-              //               child: Text(
-              //                 '#PAC000080',
-              //                 style: kTextStyleMedium.copyWith(
-              //                     fontSize: mediaQuery.size.height * 0.013),
-              //               ),
-              //             ),
-              //             Text(
-              //               '₹  10000.50',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   fontSize: mediaQuery.size.height * 0.02),
-              //             ),
-              //           ],
-              //         ),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Text(
-              //               'Order Date: 03-10-2022 02:42PM',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38,
-              //                   fontSize: mediaQuery.size.height * 0.014),
-              //             ),
-              //             Text(
-              //               'Mumbai, Maharashtra',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38,
-              //                   fontSize: mediaQuery.size.height * 0.014),
-              //             )
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-
-              // Container(
-              //   margin: EdgeInsets.only(top: 5, bottom: 7),
-              //   padding: EdgeInsets.only(left: 20, right: 20, bottom: 15),
-              //   height: 90,
-              //   width: mediaQuery.size.width,
-              //   color: Colors.white,
-              //   child: Container(
-              //     padding: EdgeInsets.only(top: 11),
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //       children: [
-              //         Row(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Container(
-              //               alignment: Alignment.center,
-              //               height: 25,
-              //               width: 90,
-              //               color: Colors.grey.shade200,
-              //               child: Text(
-              //                 '#PAC000079',
-              //                 style: kTextStyleMedium.copyWith(fontSize: 11),
-              //               ),
-              //             ),
-              //             Text(
-              //               '₹  0.00',
-              //               style: kTextStyleSemiBold.copyWith(fontSize: 15),
-              //             ),
-              //           ],
-              //         ),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Text(
-              //               'Order Date: 03-10-2022 01:00PM',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38, fontSize: 11),
-              //             ),
-              //             Text(
-              //               'Mumbai, Maharashtra',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38, fontSize: 11),
-              //             )
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // Container(
-              //   margin: EdgeInsets.only(top: 5, bottom: 7),
-              //   padding: EdgeInsets.only(left: 20, right: 20, bottom: 15),
-              //   height: 90,
-              //   width: mediaQuery.size.width,
-              //   color: Colors.white,
-              //   child: Container(
-              //     padding: EdgeInsets.only(top: 11),
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //       children: [
-              //         Row(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Container(
-              //               alignment: Alignment.center,
-              //               height: 25,
-              //               width: 90,
-              //               color: Colors.grey.shade200,
-              //               child: Text(
-              //                 '#PAC000071',
-              //                 style: kTextStyleMedium.copyWith(fontSize: 11),
-              //               ),
-              //             ),
-              //             Text(
-              //               '₹  51250.50',
-              //               style: kTextStyleSemiBold.copyWith(fontSize: 15),
-              //             ),
-              //           ],
-              //         ),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Text(
-              //               'Order Date: 30-09-2022 07:23PM',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38, fontSize: 11),
-              //             ),
-              //             Text(
-              //               'Mumbai, Maharashtra',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38, fontSize: 11),
-              //             )
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // Container(
-              //   margin: EdgeInsets.only(top: 5, bottom: 7),
-              //   padding: EdgeInsets.only(left: 20, right: 20, bottom: 15),
-              //   height: 90,
-              //   width: mediaQuery.size.width,
-              //   color: Colors.white,
-              //   child: Container(
-              //     padding: EdgeInsets.only(top: 11),
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //       children: [
-              //         Row(
-              //           crossAxisAlignment: CrossAxisAlignment.start,
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Container(
-              //               alignment: Alignment.center,
-              //               height: 25,
-              //               width: 90,
-              //               color: Colors.grey.shade200,
-              //               child: Text(
-              //                 '#PAC000071',
-              //                 style: kTextStyleMedium.copyWith(fontSize: 11),
-              //               ),
-              //             ),
-              //             Text(
-              //               '₹  51250.50',
-              //               style: kTextStyleSemiBold.copyWith(fontSize: 15),
-              //             ),
-              //           ],
-              //         ),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Text(
-              //               'Order Date: 30-09-2022 07:23PM',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38, fontSize: 11),
-              //             ),
-              //             Text(
-              //               'Mumbai, Maharashtra',
-              //               style: kTextStyleSemiBold.copyWith(
-              //                   color: Colors.black38, fontSize: 11),
-              //             )
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -884,9 +665,6 @@ class BottomAppBarIconNotSelected extends StatelessWidget {
           iconData,
           size: mediaQuery.size.height * 0.03,
         ),
-        // SizedBox(
-        //   height: mediaQuery.size.height * 0.002,
-        // ),
         Text(
           title,
           style: kTextStyleMedium.copyWith(
