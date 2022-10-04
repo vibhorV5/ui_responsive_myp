@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ui_responsive_myp/Constants/textstyles.dart';
+import 'package:ui_responsive_myp/Screens/Payments/Controller/payements_controller.dart';
 
 class PaymentsScreen extends StatefulWidget {
   const PaymentsScreen({super.key});
@@ -14,55 +16,6 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
     final mediaQuery = MediaQuery.of(context);
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Color(0xFFBAD350),
-      // ),
-      // bottomNavigationBar: BottomAppBar(
-      //   child: Container(
-      //     padding: EdgeInsets.only(
-      //         top: mediaQuery.size.height * 0.014,
-      //         bottom: mediaQuery.size.height * 0.009,
-      //         left: mediaQuery.size.width * 0.015,
-      //         right: mediaQuery.size.width * 0.015),
-      //     color: const Color(0xFFBAD350),
-      //     height: mediaQuery.size.height * 0.085,
-      //     child: SizedBox(
-      //       // height: mediaQuery.size.height * 0.068,
-      //       child: Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //         children: [
-      //           // Icon(Icons.home),
-      //           BottomAppBarIconNotSelected(
-      //             mediaQuery: mediaQuery,
-      //             title: 'Home',
-      //             iconData: Icons.ac_unit,
-      //           ),
-      //           BottomAppBarIconNotSelected(
-      //             mediaQuery: mediaQuery,
-      //             title: 'Materials',
-      //             iconData: Icons.account_balance_outlined,
-      //           ),
-      //           BottomAppBarIconSelected(
-      //             mediaQuery: mediaQuery,
-      //             title: 'Payments',
-      //             iconData: Icons.border_all_sharp,
-      //           ),
-
-      //           BottomAppBarIconNotSelected(
-      //             mediaQuery: mediaQuery,
-      //             title: 'Orders',
-      //             iconData: Icons.amp_stories_outlined,
-      //           ),
-      //           BottomAppBarIconNotSelected(
-      //             mediaQuery: mediaQuery,
-      //             title: 'Enquiries',
-      //             iconData: Icons.info_outline,
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
       backgroundColor: Colors.grey.shade200,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -345,261 +298,159 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
               ),
 
               //Pending Payments/Cleared Payments
-              Container(
-                margin: EdgeInsets.only(
-                  top: mediaQuery.size.height * 0.035,
-                  right: mediaQuery.size.width * 0.025,
-                  left: mediaQuery.size.width * 0.025,
-                ),
-                child: Row(
+              Obx(() {
+                return Container(
+                  margin: EdgeInsets.only(
+                    top: mediaQuery.size.height * 0.035,
+                    right: mediaQuery.size.width * 0.025,
+                    left: mediaQuery.size.width * 0.025,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Get.find<PaymentsController>()
+                                  .toggleSelectedPayment(true);
+                            },
+                            child: Text(
+                              'Pending Payments',
+                              style: Get.find<PaymentsController>()
+                                      .pendingPaymentsSelected
+                                      .isTrue
+                                  ? kTextStyleSemiBold.copyWith(
+                                      fontSize: mediaQuery.size.height * 0.015)
+                                  : kTextStyleSemiBold.copyWith(
+                                      fontSize: mediaQuery.size.height * 0.015,
+                                      color: Colors.black38,
+                                    ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: mediaQuery.size.width * 0.15,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            color: Colors.black38,
+                            height: mediaQuery.size.height * 0.03,
+                            width: mediaQuery.size.width * 0.005,
+                          ),
+                          SizedBox(
+                            width: mediaQuery.size.width * 0.04,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.find<PaymentsController>()
+                                  .toggleSelectedPayment(false);
+                            },
+                            child: Text(
+                              'Cleared Payments',
+                              style: Get.find<PaymentsController>()
+                                      .pendingPaymentsSelected
+                                      .isFalse
+                                  ? kTextStyleSemiBold.copyWith(
+                                      fontSize: mediaQuery.size.height * 0.015)
+                                  : kTextStyleSemiBold.copyWith(
+                                      fontSize: mediaQuery.size.height * 0.015,
+                                      color: Colors.black38,
+                                    ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                );
+              }),
+
+              Obx(() {
+                return Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Pending Payments',
-                          style: kTextStyleSemiBold.copyWith(
-                              fontSize: mediaQuery.size.height * 0.015),
-                        ),
-                      ],
+                    Container(
+                      margin: EdgeInsets.only(
+                        right: mediaQuery.size.width * 0.025,
+                        left: mediaQuery.size.width * 0.025,
+                        top: mediaQuery.size.height * 0.015,
+                      ),
+                      width: mediaQuery.size.width * 0.41,
+                      height: mediaQuery.size.width * 0.005,
+                      color: Get.find<PaymentsController>()
+                              .pendingPaymentsSelected
+                              .isTrue
+                          ? const Color(0xFFBAD350)
+                          : Colors.transparent,
                     ),
-                    SizedBox(
-                      width: mediaQuery.size.width * 0.15,
+                    Container(
+                      margin: EdgeInsets.only(
+                        right: mediaQuery.size.width * 0.025,
+                        left: mediaQuery.size.width * 0.065,
+                        top: mediaQuery.size.height * 0.015,
+                      ),
+                      width: mediaQuery.size.width * 0.43,
+                      height: mediaQuery.size.width * 0.005,
+                      color: Get.find<PaymentsController>()
+                              .pendingPaymentsSelected
+                              .isFalse
+                          ? const Color(0xFFBAD350)
+                          : Colors.transparent,
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          color: Colors.black38,
-                          height: mediaQuery.size.height * 0.03,
-                          width: mediaQuery.size.width * 0.005,
-                        ),
-                        SizedBox(
-                          width: mediaQuery.size.width * 0.04,
-                        ),
-                        Text(
-                          'Cleared Payments',
-                          style: kTextStyleSemiBold.copyWith(
-                            fontSize: mediaQuery.size.height * 0.015,
-                            color: Colors.black38,
-                          ),
-                        ),
-                      ],
-                    )
                   ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(
-                      right: mediaQuery.size.width * 0.025,
-                      left: mediaQuery.size.width * 0.025,
-                      top: mediaQuery.size.height * 0.015,
-                    ),
-                    width: mediaQuery.size.width * 0.41,
-                    height: mediaQuery.size.width * 0.005,
-                    color: const Color(0xFFBAD350),
-                  ),
-                ],
-              ),
+                );
+              }),
 
               //List of payments
-              Container(
-                margin: EdgeInsets.only(
-                  top: mediaQuery.size.height * 0.006,
-                  bottom: mediaQuery.size.height * 0.008,
-                ),
-                padding: EdgeInsets.only(
-                    left: mediaQuery.size.width * 0.05,
-                    right: mediaQuery.size.width * 0.05,
-                    bottom: mediaQuery.size.height * 0.015),
-                height: mediaQuery.size.height * 0.115,
-                width: mediaQuery.size.width,
-                color: Colors.white,
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: mediaQuery.size.height * 0.014,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding:
-                                EdgeInsets.all(mediaQuery.size.width * 0.001),
-                            alignment: Alignment.center,
-                            height: mediaQuery.size.height * 0.032,
-                            width: mediaQuery.size.width * 0.21,
-                            color: Colors.grey.shade200,
-                            child: Text(
-                              '#PAC000080',
-                              style: kTextStyleMedium.copyWith(
-                                  fontSize: mediaQuery.size.height * 0.013),
-                            ),
-                          ),
-                          Text(
-                            '₹  10000.50',
-                            style: kTextStyleSemiBold.copyWith(
-                                fontSize: mediaQuery.size.height * 0.02),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Order Date: 03-10-2022 02:42PM',
-                            style: kTextStyleSemiBold.copyWith(
-                                color: Colors.black38,
-                                fontSize: mediaQuery.size.height * 0.014),
-                          ),
-                          Text(
-                            'Mumbai, Maharashtra',
-                            style: kTextStyleSemiBold.copyWith(
-                                color: Colors.black38,
-                                fontSize: mediaQuery.size.height * 0.014),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                  top: mediaQuery.size.height * 0.006,
-                  bottom: mediaQuery.size.height * 0.008,
-                ),
-                padding: EdgeInsets.only(
-                    left: mediaQuery.size.width * 0.05,
-                    right: mediaQuery.size.width * 0.05,
-                    bottom: mediaQuery.size.height * 0.015),
-                height: mediaQuery.size.height * 0.115,
-                width: mediaQuery.size.width,
-                color: Colors.white,
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: mediaQuery.size.height * 0.014,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding:
-                                EdgeInsets.all(mediaQuery.size.width * 0.001),
-                            alignment: Alignment.center,
-                            height: mediaQuery.size.height * 0.032,
-                            width: mediaQuery.size.width * 0.21,
-                            color: Colors.grey.shade200,
-                            child: Text(
-                              '#PAC000079',
-                              style: kTextStyleMedium.copyWith(
-                                  fontSize: mediaQuery.size.height * 0.013),
-                            ),
-                          ),
-                          Text(
-                            '₹  0.00',
-                            style: kTextStyleSemiBold.copyWith(
-                                fontSize: mediaQuery.size.height * 0.02),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Order Date: 03-10-2022 01:00PM',
-                            style: kTextStyleSemiBold.copyWith(
-                                color: Colors.black38,
-                                fontSize: mediaQuery.size.height * 0.014),
-                          ),
-                          Text(
-                            'Mumbai, Maharashtra',
-                            style: kTextStyleSemiBold.copyWith(
-                                color: Colors.black38,
-                                fontSize: mediaQuery.size.height * 0.014),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(
-                  top: mediaQuery.size.height * 0.006,
-                  bottom: mediaQuery.size.height * 0.008,
-                ),
-                padding: EdgeInsets.only(
-                    left: mediaQuery.size.width * 0.05,
-                    right: mediaQuery.size.width * 0.05,
-                    bottom: mediaQuery.size.height * 0.015),
-                height: mediaQuery.size.height * 0.115,
-                width: mediaQuery.size.width,
-                color: Colors.white,
-                child: Container(
-                  padding: EdgeInsets.only(
-                    top: mediaQuery.size.height * 0.014,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding:
-                                EdgeInsets.all(mediaQuery.size.width * 0.001),
-                            alignment: Alignment.center,
-                            height: mediaQuery.size.height * 0.032,
-                            width: mediaQuery.size.width * 0.21,
-                            color: Colors.grey.shade200,
-                            child: Text(
-                              '#PAC000071',
-                              style: kTextStyleMedium.copyWith(
-                                  fontSize: mediaQuery.size.height * 0.013),
-                            ),
-                          ),
-                          Text(
-                            '₹  51250.00',
-                            style: kTextStyleSemiBold.copyWith(
-                                fontSize: mediaQuery.size.height * 0.02),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Order Date: 30-09-2022 07:23PM',
-                            style: kTextStyleSemiBold.copyWith(
-                                color: Colors.black38,
-                                fontSize: mediaQuery.size.height * 0.014),
-                          ),
-                          Text(
-                            'Mumbai, Maharashtra',
-                            style: kTextStyleSemiBold.copyWith(
-                                color: Colors.black38,
-                                fontSize: mediaQuery.size.height * 0.014),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              Obx(() {
+                return Container(
+                  child: Get.find<PaymentsController>()
+                          .pendingPaymentsSelected
+                          .isTrue
+                      ? Column(
+                          children: [
+                            PaymentCardWidget(
+                                mediaQuery: mediaQuery,
+                                orderID: '#PAC000080',
+                                amount: '₹  10000.50',
+                                orderDate: 'Order Date: 03-10-2022 02:42PM',
+                                location: 'Mumbai, Maharashtra'),
+                            PaymentCardWidget(
+                                mediaQuery: mediaQuery,
+                                orderID: '#PAC000079',
+                                amount: '₹  0.00',
+                                orderDate: 'Order Date: 03-10-2022 01:00PM',
+                                location: 'Mumbai, Maharashtra'),
+                            PaymentCardWidget(
+                                mediaQuery: mediaQuery,
+                                orderID: '#PAC000071',
+                                amount: '₹  51250.00',
+                                orderDate: 'Order Date: 03-09-2022 07:23PM',
+                                location: 'Mumbai, Maharashtra'),
+                            PaymentCardWidget(
+                                mediaQuery: mediaQuery,
+                                orderID: '#PAC000080',
+                                amount: '₹  10000.50',
+                                orderDate: 'Order Date: 03-10-2022 02:42PM',
+                                location: 'Mumbai, Maharashtra'),
+                          ],
+                        )
+                      : Column(
+                          // mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            PaymentCardWidget(
+                                mediaQuery: mediaQuery,
+                                orderID: '#PAC000001',
+                                amount: '₹  10000.00',
+                                orderDate: 'Order Date: 03-10-2022 02:42PM',
+                                location: 'Mumbai, Maharashtra'),
+                          ],
+                        ),
+                );
+              })
             ],
           ),
         ),
@@ -608,70 +459,155 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
   }
 }
 
-class BottomAppBarIconSelected extends StatelessWidget {
-  const BottomAppBarIconSelected({
+class PaymentCardWidget extends StatelessWidget {
+  const PaymentCardWidget({
     Key? key,
     required this.mediaQuery,
-    required this.iconData,
-    required this.title,
+    required this.amount,
+    required this.location,
+    required this.orderDate,
+    required this.orderID,
   }) : super(key: key);
 
   final MediaQueryData mediaQuery;
-  final IconData iconData;
-  final String title;
+  final String orderID;
+  final String amount;
+  final String orderDate;
+  final String location;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Icon(
-          iconData,
-          size: mediaQuery.size.height * 0.03,
+    return Container(
+      margin: EdgeInsets.only(
+        top: mediaQuery.size.height * 0.006,
+        bottom: mediaQuery.size.height * 0.008,
+      ),
+      padding: EdgeInsets.only(
+          left: mediaQuery.size.width * 0.05,
+          right: mediaQuery.size.width * 0.05,
+          bottom: mediaQuery.size.height * 0.015),
+      height: mediaQuery.size.height * 0.115,
+      width: mediaQuery.size.width,
+      color: Colors.white,
+      child: Container(
+        padding: EdgeInsets.only(
+          top: mediaQuery.size.height * 0.014,
         ),
-        // SizedBox(
-        //   height: mediaQuery.size.height * 0.002,
-        // ),
-        Text(
-          title,
-          style: kTextStyleMedium.copyWith(
-            color: Colors.white,
-            fontSize: mediaQuery.size.height * 0.014,
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(mediaQuery.size.width * 0.001),
+                  alignment: Alignment.center,
+                  height: mediaQuery.size.height * 0.032,
+                  width: mediaQuery.size.width * 0.21,
+                  color: Colors.grey.shade200,
+                  child: Text(
+                    orderID,
+                    style: kTextStyleMedium.copyWith(
+                        fontSize: mediaQuery.size.height * 0.013),
+                  ),
+                ),
+                Text(
+                  amount,
+                  style: kTextStyleSemiBold.copyWith(
+                      fontSize: mediaQuery.size.height * 0.02),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  orderDate,
+                  style: kTextStyleSemiBold.copyWith(
+                      color: Colors.black38,
+                      fontSize: mediaQuery.size.height * 0.014),
+                ),
+                Text(
+                  location,
+                  style: kTextStyleSemiBold.copyWith(
+                      color: Colors.black38,
+                      fontSize: mediaQuery.size.height * 0.014),
+                )
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
 
-class BottomAppBarIconNotSelected extends StatelessWidget {
-  const BottomAppBarIconNotSelected({
-    Key? key,
-    required this.mediaQuery,
-    required this.iconData,
-    required this.title,
-  }) : super(key: key);
+// class BottomAppBarIconSelected extends StatelessWidget {
+//   const BottomAppBarIconSelected({
+//     Key? key,
+//     required this.mediaQuery,
+//     required this.iconData,
+//     required this.title,
+//   }) : super(key: key);
 
-  final MediaQueryData mediaQuery;
-  final IconData iconData;
-  final String title;
+//   final MediaQueryData mediaQuery;
+//   final IconData iconData;
+//   final String title;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Icon(
-          iconData,
-          size: mediaQuery.size.height * 0.03,
-        ),
-        Text(
-          title,
-          style: kTextStyleMedium.copyWith(
-            fontSize: mediaQuery.size.height * 0.014,
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Icon(
+//           iconData,
+//           size: mediaQuery.size.height * 0.03,
+//         ),
+//         // SizedBox(
+//         //   height: mediaQuery.size.height * 0.002,
+//         // ),
+//         Text(
+//           title,
+//           style: kTextStyleMedium.copyWith(
+//             color: Colors.white,
+//             fontSize: mediaQuery.size.height * 0.014,
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// class BottomAppBarIconNotSelected extends StatelessWidget {
+//   const BottomAppBarIconNotSelected({
+//     Key? key,
+//     required this.mediaQuery,
+//     required this.iconData,
+//     required this.title,
+//   }) : super(key: key);
+
+//   final MediaQueryData mediaQuery;
+//   final IconData iconData;
+//   final String title;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Icon(
+//           iconData,
+//           size: mediaQuery.size.height * 0.03,
+//         ),
+//         Text(
+//           title,
+//           style: kTextStyleMedium.copyWith(
+//             fontSize: mediaQuery.size.height * 0.014,
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }

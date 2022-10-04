@@ -3,10 +3,11 @@ import 'package:ui_responsive_myp/Routes/routes.dart';
 import 'package:ui_responsive_myp/Screens/Main/Controller/main_controller.dart';
 import 'package:ui_responsive_myp/Screens/Main/View/main_screen.dart';
 import 'package:get/get.dart';
+import 'package:ui_responsive_myp/Screens/Payments/Controller/payements_controller.dart';
 
 void main() async {
   runApp(const MyApp());
-  // Get.lazyPut<MainController>(() => MainController());
+  Get.lazyPut<PaymentsController>(() => PaymentsController());
   // Get.put(MainController());
 }
 
