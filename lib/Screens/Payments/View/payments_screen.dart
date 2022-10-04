@@ -221,6 +221,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
+                          height: mediaQuery.size.height * 0.037,
                           alignment: Alignment.center,
                           margin: EdgeInsets.only(
                             top: mediaQuery.size.height * 0.015,
@@ -235,11 +236,15 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                               mediaQuery.size.height * 0.006,
                             ),
                           ),
-                          // height: 30,
-                          // width: 60,
-                          child: Row(
-                            children: [
-                              Text(
+                          child: DropdownButtonHideUnderline(child: Obx(() {
+                            return DropdownButton(
+                              // iconDisabledColor: Colors.transparent,
+                              icon: Icon(
+                                Icons.arrow_drop_down_rounded,
+                                size: mediaQuery.size.height * 0.04,
+                                color: Colors.grey.shade800,
+                              ),
+                              hint: Text(
                                 'Over all',
                                 style: TextStyle(
                                   fontSize: mediaQuery.size.height * 0.014,
@@ -247,13 +252,55 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                   color: Colors.grey.shade800,
                                 ),
                               ),
-                              Icon(
-                                Icons.arrow_drop_down_rounded,
-                                size: mediaQuery.size.height * 0.04,
-                                color: Colors.grey.shade800,
-                              )
-                            ],
-                          ),
+                              value: Get.find<PaymentsController>()
+                                          .selected
+                                          .value ==
+                                      ""
+                                  ? null
+                                  : Get.find<PaymentsController>()
+                                      .selected
+                                      .value,
+                              onChanged: (newValue) {
+                                Get.find<PaymentsController>()
+                                    .setSelected(newValue!);
+                                // controller.selectedCountryValidate(newValue);
+                              },
+                              items: Get.find<PaymentsController>()
+                                  .listType
+                                  .map((selectedType) {
+                                return DropdownMenuItem(
+                                  value: selectedType,
+                                  child: Text(
+                                    selectedType,
+                                    style: TextStyle(
+                                      fontSize: mediaQuery.size.height * 0.014,
+                                      fontFamily: 'PoppinsMedium',
+                                      color: Colors.black87,
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            );
+                          })),
+                          // height: 30,
+                          // width: 60,
+                          // child: Row(
+                          //   children: [
+                          //     Text(
+                          //       'Over all',
+                          // style: TextStyle(
+                          //   fontSize: mediaQuery.size.height * 0.014,
+                          //   fontFamily: 'PoppinsMedium',
+                          //   color: Colors.grey.shade800,
+                          // ),
+                          //     ),
+                          // Icon(
+                          //   Icons.arrow_drop_down_rounded,
+                          //   size: mediaQuery.size.height * 0.04,
+                          //   color: Colors.grey.shade800,
+                          // ),
+                          //   ],
+                          // ),
                         ),
                       ],
                     ),
